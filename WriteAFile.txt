@@ -1,5 +1,9 @@
 1 One
 2 Two
 4 Four
+20 Twenty
 5 Five
 6 Six
+40 Fourty
+12 Twelve
+30 Thirty
