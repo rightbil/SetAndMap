@@ -1,18 +1,16 @@
 package com.company;
 
 import java.util.*;
+import java.util.Scanner;
 
 public class Test {
     public static final String vowelPostFix = "ay";
-
     public static void WriteToScreen(String args) {
         System.out.println(args);
     }
-
     public static String consonantRandomPostFix() {
         return new Random().nextInt(2) == 1 ? consonantPostFix.tay.toString() : consonantPostFix.way.toString();
     }
-
     public static boolean isVowel(char c) {
 // TODO: which one is efficent
         ArrayList<Character> d = new ArrayList<>();
@@ -47,7 +45,7 @@ public class Test {
     }
 
     public static String randomPrefix() {
-        ArrayList<String> a = new ArrayList<String>(
+        ArrayList<String> a = new ArrayList<>(
                 Arrays.asList(
                         "Why do you say that ",
                         "You seem to think that ",
@@ -74,32 +72,30 @@ public class Test {
         String response; // 81 is Q and 113 is q
         String currentValue = null;
         String[] temp;
-        StringBuilder sb;// = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
 
         while (!quit.equalsIgnoreCase("Q")) {
-             sb= new StringBuilder();
             System.out.println("\n\tEnter your response here or Q to quit:");
             response = sc.nextLine();
-            if (response.equalsIgnoreCase("Q")) {
-                quit = response;
-                break;
-            } else {
-
-                temp = response.split(" ");
+            if (!response.equalsIgnoreCase("Q")) {
+                 temp = response.split(" ");
+                 // TODO: The pig case
                 if (temp[0].equalsIgnoreCase("pig")) {
                     for (int i = 1; i < temp.length; i++) {
                         if (!lookupMap(temp[i]).isEmpty()) {
                             temp[i] = lookupMap(temp[i]);
                             if (isVowel(temp[i].charAt(i)) == true) {
                                 temp[i] += vowelPostFix;
+                                WriteToScreen(vowelPostFix + temp[i]);
                             } else {
                                 temp[i] += consonantRandomPostFix();
                                 sb.append(randomPrefix()).append(temp.toString());
                                 WriteToScreen("sb :" + sb);
-                            }
-                        }
-                    }
-                } else if (temp[0].equalsIgnoreCase("caps")) {
+                            }// end of else
+                        }// end of if
+                    }//end of for loop
+                } // TODO: The CAPs case
+                else if (temp[0].equalsIgnoreCase("caps")) {
                     for (int i = 1; i < temp.length; i++) {
                         if (!lookupMap(temp[i]).isEmpty()) {
                             temp[i] = lookupMap(temp[i]);
@@ -112,13 +108,16 @@ public class Test {
                 } else if (temp[0].equalsIgnoreCase("playgame")) {
                     sb.append("Game 1 \n Game 2 \n Game 3");// show games from enum list
                 } else {
-                    WriteToScreen("Un classified input");
+                    WriteToScreen("Un classified input change this back to regular asking ");
                 }
-            }
-
+            }// end of if
+            else {
+                quit = response;
+                break;
+            }// End of else
         }
         //WriteToScreen("sb :" + sb);
-    }
+    }// end of main
 
     public enum consonantPostFix {way, tay;}
 
