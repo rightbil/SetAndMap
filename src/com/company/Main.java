@@ -2,16 +2,80 @@ package com.company;
 
 import org.w3c.dom.ls.LSOutput;
 
-import java.io.*;
-import java.util.*;
-import java.util.function.BiConsumer;
+import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Random;
+import java.util.Scanner;
 
 public class Main {
-
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-//1 TODO: HashMap
+
+        //8 TODO: Add Easter Eggs to Eliza 50
+
+        HashMap<String, String> map = new HashMap<>();
+        map.put("i", "you");
+        map.put("me", "you");
+        map.put("my", "you");
+        map.put("am", "are");
+        ArrayList<String> a = new ArrayList<>();
+        a.add("Why do you say that ");
+        a.add("You seem to think that ");
+        a.add("So, you are concerned that ");
+        StringBuilder sb = new StringBuilder();
+        System.out.println("Good day. What is your problem?");
+        Random r = new Random();
+        String[] finalResult;
+        String quit = "C";
+        String response; // 81 is Q and 113 is q
+        String currentValue = null;
+        String[] temp = {"aull","eat"};
+        char[] v = {'a', 'e', 'i', 'o', 'u'};
+        boolean x = Character.toLowerCase(temp[0].charAt(0))==v[0];
+//        System.out.println("boolean : "+x);
+//        System.out.println(Character.toLowerCase(temp[0].charAt(0)));
+//        System.out.println(v[0]);
+
+            while (!quit.equalsIgnoreCase("Q")) {
+            System.out.println("\n\tEnter your response here or Q to quit:");
+            response = sc.nextLine();
+            if (response.equalsIgnoreCase("Q")) {
+                quit = response;
+                break;
+            } else {
+
+                temp = response.split(" ");
+                if (temp[0].equalsIgnoreCase("pig")) {
+                    //sb.append(a.get(r.nextInt(a.size())));
+                    for (int i = 1; i < temp.length; i++) {
+                        for (String key : map.keySet()) {
+                            if (temp[i].equalsIgnoreCase(key)) {
+                                temp[i] = map.get(key);
+                                for (int j = 0; j < v.length; j++) {
+                                    if (Character.toLowerCase(temp[i].charAt(0)) == v[j]) {
+                                        temp[i] += "ay";
+                                        break;
+                                    } else {
+                                        temp[i] += r.nextInt(2) == 1 ? "way" : "tay";
+                                        break;
+                                    }
+                                }
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            for (int i = 0; i < temp.length; i++) {
+
+                sb.append("" + temp[i] + " ");
+            }
+
+            System.out.println("sb :" + sb);
+        }
+        //1 TODO: HashMap
         /**    Prompt: Enter a number: 10 Response: You entered ten.
          If number is not found (use myMap.containsKey(10) then prompt user to tell the map to add that to the map.
          Add the key and value to the map with the following line of code:
@@ -95,6 +159,7 @@ public class Main {
 
 //2 TODO: Zork 1
 
+
         //get the input where the user wants to go
         //Show what is in that room and give them what possible direction the can go from there
         //Users can move back and forth
@@ -103,29 +168,12 @@ public class Main {
         //When the user exits the house or quits there is a 25% chance they will be followed by a ghost. Let them know when they are being followed.
         //Also let the user know how many rooms they visited after they exit or quit.
 
-     /*   HashMap<String, String >  dir= new HashMap<>();
 
-        dir.put("N2","foyer");
-        dir.put("S1","front room");
-        dir.put("W3","front room");
-        dir.put("E4","front room");
-        dir.put("E2","front room");
-        //dir.put("N5","foyer");
-
-
-        HashMap<String,HashMap<Object,String>> room= new HashMap<>();
-
-        //room.put("#1",dir);
-
-        System.out.println(dir);
-        System.out.println();
-
-*/
-
-        //3 TODO: Zork Extension 50
-        //4 TODO: Group Eliza 0
-        //5 TODO: Simple Eliza Application  25
-/*        System.out.println("Good day. What is your problem?");
+//3 TODO: Zork Extension 50
+//4 TODO: Group Eliza 0
+//5 TODO: Simple Eliza Application  25
+/*
+        System.out.println("Good day. What is your problem?");
         String quit="C";
         String response; // 81 is Q and 113 is q
         while(!quit.equalsIgnoreCase("Q")) {
@@ -142,10 +190,9 @@ public class Main {
             }
 
         }*/
-        //6 TODO: Intermediate Eliza
- /*
+//6 TODO: Intermediate Eliza
+/*
         System.out.println("Good day. What is your problem?");
-
         HashMap<String, String> map = new HashMap<>();
         map.put("i", "you");
         map.put("me", "you");
@@ -181,10 +228,8 @@ public class Main {
             }
         }
 */
-
-
-        //7 TODO: Full Eliza Application 50
-
+//7 TODO: Full Eliza Application 50
+/*
         HashMap<String, String> map = new HashMap<>();
         map.put("i", "you");
         map.put("me", "you");
@@ -226,49 +271,11 @@ public class Main {
             }
             System.out.println("sb:" + sb);
         }
-
-
-
-
-        //7 TODO: Add Easter Eggs to Eliza 50
-/*        System.out.println("Good day. What is your problem?");
-        Random rand= new Random();
-        StringBuilder sb= new StringBuilder();
-        String[] eggsToEliza;
-        String quit = "C";
-        String response; // 81 is Q and 113 is q
-        String current = null;
-        char [] v= {'a','e','i','o','u'};
-        while (!quit.equalsIgnoreCase("Q")) {
-            System.out.println("\n\tEnter your response here or Q to quit:");
-            response = sc.nextLine();
-            if (response.equalsIgnoreCase("Q")) {
-                quit = response;
-                break;
-            } else {
-                eggsToEliza= response.split(" ");
-            }
-            current= eggsToEliza[0];
-            if(current.equalsIgnoreCase("pig")){
-                for (int i = 1; i < eggsToEliza.length; i++) {
-                    for(int j= i; j< v.length; j++){
-                        (eggsToEliza[i].charAt(i)==)
-                    }
-                }
-            }
-            else if (eggsToEliza[0])
-
-                System.out.print("here : " + i + " "+ eggsToEliza[i]);
-        }
-        System.out.print(sb);
-    }*/
-
-        //8 TODO: Pair Of Number 5
-        //9 TODO: Method Exercises 40
-
-        //TODO: only testing purpose
-
- /*  HashMap<String,Integer> oldMap= new HashMap<>();
+*/
+//8 TODO: Pair Of Number 5
+//9 TODO: Method Exercises 40
+//TODO: only testing purpose
+/*  HashMap<String,Integer> oldMap= new HashMap<>();
         oldMap.put("Alex",4000);
         System.out.println("Old Map : " + oldMap);
         HashMap<String,Integer> newMap= new HashMap<>();
@@ -286,7 +293,7 @@ public class Main {
         System.out.println("New Map : " + newMap);*/
 //TODO:zork
 
-        /*
+/*
 package com.CodeSea;
 
 import java.util.*;
